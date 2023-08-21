@@ -1,0 +1,28 @@
+@import url("https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css");
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; 
+  }
+  
+  .container input {
+    width: 200px;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .container button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    margin-bottom: 20px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+
+  .container img.container-img {
+    width: 100px;
+    height: 100px;
+  }
