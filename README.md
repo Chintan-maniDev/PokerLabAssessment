@@ -25,6 +25,12 @@
 
 
 # Example Test 
+-Input Type : You can enter any number of hands in a comma separted cards list and it will return the following
+    - Hand you gave as input
+    - Hand Type (i.e. Flush, Straight etc.)
+    - Upper Rank (Considering the Hand Type)
+    - Unique Rank (Uniquely rank each hand for comparison basis)
+
 ##Input : "AH,QH,KH,JH,TH,AH,QH,KH,JH,TD"
 
 
