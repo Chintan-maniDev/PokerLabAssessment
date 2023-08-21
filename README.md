@@ -24,17 +24,17 @@
   - This will open your app in a web browser at http://localhost:3000
 
 
-# Example Test 
-## Input Type : You can enter any number of hands in a comma separted cards list and it will return the following
-### Hand you gave as input
-### Hand Type (i.e. Flush, Straight etc.)
-### Upper Rank (Considering the Hand Type)
-### Unique Rank (Uniquely rank each hand for comparison basis)
+## Example Test 
+### Input Type : You can enter any number of hands in a comma separted cards list and it will return the following
+#### Hand you gave as input
+#### Hand Type (i.e. Flush, Straight etc.)
+#### Upper Rank (Considering the Hand Type)
+#### Unique Rank (Uniquely rank each hand for comparison basis)
 
-## Input : "AH,QH,KH,JH,TH,AH,QH,KH,JH,TD"
+### Input : "AH,QH,KH,JH,TH,AH,QH,KH,JH,TD"
 
 
-## Output
+### Output
 
 
 <img width="1244" alt="Screenshot 2023-08-21 at 9 35 44 PM" src="https://github.com/Chintan-maniDev/PokerLabAssessment/assets/142808040/a70ac006-fee8-4cd3-81a1-2129e686c70d">
