@@ -2,6 +2,7 @@ import "./Dashboard.css";
 import axios from "axios";
 import React, { useState } from "react";
 import Pokerlogo from "../asset/poker-logo.png";
+import "bootstrap/dist/css/bootstrap.css";
 
 const Dashboard = () => {
   const [data, SetData] = useState("");
@@ -9,28 +10,39 @@ const Dashboard = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:8080/evaluate', {
-        text: data
-        }, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-      .then(response => {
-        console.log("rest ", response.data.Responses);
-        setResult(response.data.Responses)
-        SetData("")
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
+    if (typeof data === "string" && data.trim() !== "") {
+      axios
+        .post(
+          "http://localhost:8080/evaluate",
+          {
+            text: data,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        )
+        .then((response) => {
+          if (response == null) alert("Please Enter Valid Poker Hand");
+          else {
+            console.log("response:", response.data.Responses);
+            setResult(response.data.Responses);
+            SetData("");
+          }
+        })
+        .catch((error) => {
+          alert("Please Enter Valid Poker Hand");
+        });
+    } else {
+      alert("Please Enter Valid Poker Hand");
+    }
   };
-
 
   const output = result.map((d, index) => {
     return (
       <tr key={index}>
-        <th scope="row">{index+1}</th>
+        <th scope="row">{index + 1}</th>
         <td>{d.Hand}</td>
         <td>{d.HandType}</td>
         <td>{d.Rank}</td>
@@ -39,8 +51,6 @@ const Dashboard = () => {
     );
   });
 
-  
-  
   return (
     <div className="container">
       <img className="container-img" src={Pokerlogo} alt="poker-logo" />
@@ -48,12 +58,13 @@ const Dashboard = () => {
       <input
         type="text"
         value={data}
-        onChange={(e) => SetData(e.target.value)}
-        placeholder="Enter comma separated cards number"
+        onChange={(e) => SetData(e.target.value.trim())}
+        placeholder="Enter comma separated cards"
       />
       <button type="submit" onClick={submitHandler}>
         Evaluate
       </button>
+      <div className="table">
         <table className="table table-striped">
           <thead>
             <tr>
@@ -66,6 +77,7 @@ const Dashboard = () => {
           </thead>
           <tbody>{output}</tbody>
         </table>
+      </div>
     </div>
   );
 };
