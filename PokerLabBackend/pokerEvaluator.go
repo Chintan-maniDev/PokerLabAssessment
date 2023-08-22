@@ -99,6 +99,10 @@ func postHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	//Parsing Input Card array...
+	if !checkInput(message.Text) {
+		http.Error(w, "Invalid Response", http.StatusBadRequest)
+		return
+	}
 	fmt.Println("Parsing input...")
 	cards := parseInput(message.Text)
 	for i := 0; i < len(cards); i += 5 {
@@ -122,6 +126,23 @@ func postHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(output)
+}
+
+func checkInput(input string) bool {
+	cardStrings := strings.Split(input, ",")
+	if len(cardStrings)%5 != 0 {
+		fmt.Println("Invalid card format:")
+		return false
+	}
+	validRanks := "23456789TJQKA"
+	if !strings.Contains(validRanks, string(input[0])) {
+		return false
+	}
+	validSuits := "SDHC"
+	if !strings.Contains(validSuits, string(input[1])) {
+		return false
+	}
+	return true
 }
 
 func parseInput(input string) []Card {
